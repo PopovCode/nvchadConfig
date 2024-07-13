@@ -66,6 +66,7 @@ return {
       require("nvim-ts-autotag").setup()
     end,
   },
+
   {
     "max397574/better-escape.nvim",
     event = "InsertEnter",
@@ -73,6 +74,8 @@ return {
       require("better_escape").setup()
     end,
   },
+
+  --Jumping and searching text
   {
     "ggandor/leap.nvim",
     lazy = false,
@@ -80,6 +83,7 @@ return {
       require("leap").add_default_mappings(true)
     end,
   },
+
   {
     "folke/trouble.nvim",
     lazy = false,
@@ -88,6 +92,8 @@ return {
       require("trouble").setup()
     end,
   },
+
+  --TODO comments
   {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
@@ -96,10 +102,14 @@ return {
       require("todo-comments").setup()
     end,
   }, -- To make a plugin not be loaded
+
+  --Autocompletion code
   {
     "Exafunction/codeium.vim",
     lazy = false,
   },
+
+  --Перевод ковычек
   {
     "axelvc/template-string.nvim",
     lazy = false,
@@ -125,6 +135,7 @@ return {
       }
     end,
   },
+
   {
     "folke/neodev.nvim",
     lazy = false,
@@ -132,9 +143,13 @@ return {
       require("neodev").setup()
     end,
   },
+
+  -- Prisma js
   {
     "prisma/vim-prisma",
   },
+
+  -- Tree right sidebar
   {
     "simrat39/symbols-outline.nvim",
     lazy = false,
@@ -142,6 +157,8 @@ return {
       require("symbols-outline").setup()
     end,
   },
+
+  -- Center commands
   {
     "folke/noice.nvim",
     event = "VeryLazy",
@@ -158,69 +175,18 @@ return {
     "rcarriga/nvim-notify",
     config = function()
       require("notify").setup {
+        top_down = false,
         background_colour = "#1e1e1e",
+        render = "compact",
+        stages = "static",
+        timeout = 1500,
       }
     end,
   },
-  {
-    "mfussenegger/nvim-dap",
-    config = function()
-      local ok, dap = pcall(require, "dap")
-      if not ok then
-        return
-      end
-      dap.configurations.typescript = {
-        {
-          type = "node2",
-          name = "node attach",
-          request = "attach",
-          program = "${file}",
-          cwd = vim.fn.getcwd(),
-          sourceMaps = true,
-          protocol = "inspector",
-        },
-      }
 
-      dap.configurations.javascript = {
-        {
-          type = "node2",
-          name = "node attach",
-          request = "attach",
-          program = "${file}",
-          cwd = vim.fn.getcwd(),
-          sourceMaps = true,
-          protocol = "inspector",
-        },
-      }
-      dap.adapters.node2 = {
-        type = "executable",
-        command = "node-debug2-adapter",
-        args = {},
-      }
-    end,
-    dependencies = {
-      "mxsdev/nvim-dap-vscode-js",
-    },
-  },
-  {
-    "rcarriga/nvim-dap-ui",
-    config = function()
-      require("dapui").setup()
+  --Debugging
+  require "configs.debug",
 
-      local dap, dapui = require "dap", require "dapui"
-
-      dap.listeners.after.event_initialized["dapui_config"] = function()
-        dapui.open {}
-      end
-      dap.listeners.before.event_terminated["dapui_config"] = function()
-        dapui.close {}
-      end
-      dap.listeners.before.event_exited["dapui_config"] = function()
-        dapui.close {}
-      end
-    end,
-    dependencies = {
-      "mfussenegger/nvim-dap",
-    },
-  },
+  --Databases
+  require "configs.dadbod",
 }
