@@ -33,6 +33,7 @@ return {
         "typescript-language-server",
         "eslint_d",
         "prisma-language-server",
+        "sqls",
       },
     },
   },
