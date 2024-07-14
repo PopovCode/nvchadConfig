@@ -29,6 +29,10 @@ map("n", "<leader>dn", function()
   require("dap").step_over()
 end, { desc = "Step Over" })
 
+--Telescope mappings
+map("n", "<leader>fw", "<cmd>Telescope grep_string<CR>", { desc = "Search Word Under Cursor" })
+map("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", { desc = "telescope live grep" })
+
 --NvimTree
 map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle NvimTree" })
 
