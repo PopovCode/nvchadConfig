@@ -29,6 +29,12 @@ map("n", "<leader>dn", function()
   require("dap").step_over()
 end, { desc = "Step Over" })
 
+-- NvimTmuxNavigator
+map("n", "<C-h>", "<cmd>NvimTmuxNavigateLeft<CR>", { desc = "Tmux Navigate Left" })
+map("n", "<C-j>", "<cmd>NvimTmuxNavigateDown<CR>", { desc = "Tmux Navigate Down" })
+map("n", "<C-k>", "<cmd>NvimTmuxNavigateUp<CR>", { desc = "Tmux Navigate Up" })
+map("n", "<C-l>", "<cmd>NvimTmuxNavigateRight<CR>", { desc = "Tmux Navigate Right" })
+
 --Telescope mappings
 map("n", "<leader>fw", "<cmd>Telescope grep_string<CR>", { desc = "Search Word Under Cursor" })
 map("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", { desc = "telescope live grep" })
